@@ -9,9 +9,12 @@ group = pbs.admin.datastore("BoxOfMagic").groups.get()
 content = pve.nodes("pve").storage("PBS").content.get(content='backup')
 
 # Compare the last backup time from the PBS groups endpoint to what PVE shows was the creation time of the backup
+
 for e in group:
     for i in content:
-        if convert_epoch(i['ctime']) == convert_epoch(e["last-backup"]):
-            print("match")
+        if convert_epoch(i['ctime']) == convert_epoch(e["last-backup"]) and i['vmid'] == 113:
+            print(f"{i} match")
+            volid = i['volid']
+            print(volid)
         else:
             print("no match")
