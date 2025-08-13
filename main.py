@@ -4,12 +4,6 @@ import time
 from zoneinfo import ZoneInfo
 from func import timestamp, convert_epoch
 
-# Volid of the backup we're testing with
-# In the final, this will be replaced with a dynamic result for each VM. That's for future me to figure out
-#volid = "PBS:backup/vm/113/2025-08-12T13:46:59Z"
-
-
-
 # Function to monitor the restore task until it's done
 def block_until_complete(prox_api, task_id, node_name):
     data = {"status": ""}
@@ -18,8 +12,6 @@ def block_until_complete(prox_api, task_id, node_name):
         print(f"{timestamp()}: Job Status: {data['status']}")
         time.sleep(10)
     return data['exitstatus']
-
-# Stores the restore exitstatus for use in the below function
 
 # Monitors the uptime of the VM (for now) and shuts it down after 60 secs
 # This is where we could define some verification scripts
@@ -72,9 +64,6 @@ for e in group:
             # Checks the restore result and begins the destroy routine if the status is OK
             if restore_result == "OK":
                 destroy_routine()
-            #print(volid)
-        else:
-            print("no match")
 
 
 
