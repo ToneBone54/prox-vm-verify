@@ -2,7 +2,7 @@
 
 Ever had a VM restore but fail to boot or critical services fail to start? We all know that we should test our backups but it can be tough to do manually. Inspired by the backup verification technology behind [Datto BCDR](https://www.datto.com/products/siris/features/) SIRIS devices and combined with the file-level verification already done by Proxmox Backup Server, VM Verify covers the gap and makes sure that you're taking good and functional backups. 
 
-*At this time, this is a work in progress. The script in the main branch does not work as stated below. Follow the dev branch if you'd like to follow my progress. I have a full time job as well so much of this will take a while to implement.*
+*At this time, this is a work in progress. The script in the main branch might not work as stated below. Currently, it's in a proof of concept phase. Follow the dev branch if you'd like to follow my progress. I have a full time job as well so much of this will take a while to implement.*
 
 ## How it's supposed to work
 
