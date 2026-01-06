@@ -4,15 +4,17 @@ import datetime as dt
 from zoneinfo import ZoneInfo
 import json
 
-# Function to convert Unix time epoch to human readable time. Specifically Chicago time since that's my timezone.
-# I'm still on the fence on this one as to whether or not this is necessary.
-# When I finally get around to writing logging functions, it might be of use. 
+# Convert Unix time epoch to human readable time. 
+# Certain API endpoints return times as Linux epochs in their responses. I used this early on to convert them to a readable format for testing,
+# mainly to help me understand API responses.
+# I'm still on the fence on this one as to whether or not this is necessary but I'm leaning on not. Mainly, because where these time values are being used and checked,
+# it doesn't need to log it (yet), only compare it to another epoch.
 def convert_epoch(epoch):
     central = ZoneInfo('America/Chicago')
     time_convert = dt.datetime.fromtimestamp(epoch, tz=central)
     return time_convert
 
-# Function to pretty up JSON responses. Pretty much only used in early testing and debugging
+# Function to pretty up Proxmoxer responses. Pretty much only used in early testing and debugging
 # until I realized that Proxmoxer responses are already in Python lists/dicts
 def jprint(obj):
     text = json.dumps(obj, sort_keys=True, indent=2)
