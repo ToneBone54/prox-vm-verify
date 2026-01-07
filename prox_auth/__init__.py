@@ -7,10 +7,14 @@ import configparser
 import requests # Needed for proxmoxer
 from proxmoxer import ProxmoxAPI
 
+# Initialize main configparser class
 config = configparser.ConfigParser()
-config.read('./prox_auth/my_config.ini')
 
-# Authentication info
+# Load the config to read the values
+# There is a hook script that catches if this value = anything but config.ini before I can commit changes
+config.read('./prox_auth/config.ini')
+
+## Authentication info
 # PVE
 pve_user = config['PVE']['user']
 pve_token_name = config['PVE']['pve_token_name']
@@ -26,9 +30,7 @@ pbs_service = config['PBS']['service']
 pbs_ip = config['PBS']['ip']
 pbs_ssl = config['PBS'].getboolean('verify_ssl')
 
-
 # These variables become the backend used to access the APIs
-
 pve = ProxmoxAPI(
     pve_ip, user=pve_user, token_name=pve_token_name, token_value=pve_token_value, verify_ssl=pve_ssl
 )
