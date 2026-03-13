@@ -3,16 +3,17 @@
 # - Sets up authentication parameters for both PVE and PBS
 # - Initializes API token backends for both services
 
-import configparser
+from configparser import ConfigParser
 import requests # Needed for proxmoxer
 from proxmoxer import ProxmoxAPI
 
 # Initialize main configparser class
-config = configparser.ConfigParser()
+config = ConfigParser()
 
 # Load the config to read the values
-# There is a hook script that catches if this value = anything but config.ini before I can commit changes
-config.read('./prox_auth/config.ini')
+# There is a hook script that catches if this value = anything but config.ini before changes can be committed
+config.read('./config.ini')
+
 
 ## Authentication info
 # PVE
